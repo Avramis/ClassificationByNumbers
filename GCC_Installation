@@ -1,0 +1,21 @@
+#!/bin/bash
+echo '###################################################'
+echo '#                                                 #'
+echo '#                GCC Compiler                     #'
+echo '# Compiling ClassificationByNumbers initiation... #'
+echo '#                                                 #'
+
+cwd=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/Code/"
+cd $cwd
+
+for n in SSW/*.c; do bn=$(basename $n .c); gcc -O3 -fpic -Wall -c -o ${bn}.o $n; done
+cp SSW/* $cwd
+
+g++ -Wall -O3 -std=c++11 -o ClassificationByNumbers *.cpp ssw.o
+
+mv ClassificationByNumbers ../Exec
+
+echo '#                                                 #'
+echo '# Compiling ClassificationByNumbers completed...  #'
+echo '#                                                 #'
+echo '###################################################'
